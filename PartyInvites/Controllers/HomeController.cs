@@ -25,13 +25,13 @@ namespace PartyInvites.Controllers
         }
 
         [HttpPost] 
-        public ViewResult RsvpForm(GuestResponse guestResponse)
+        public ViewResult RsvpForm(CompetitionInvite competitionInvite)
         {
            
             if (ModelState.IsValid)
             {
                 //TODO: Email response to the party organizer
-                return View("Thanks", guestResponse);
+                return View("Thanks", competitionInvite);
             } else
             {
                 // there is a validation error

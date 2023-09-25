@@ -1,4 +1,4 @@
-﻿@model PartyInvites.Models.GuestResponse
+﻿@model PartyInvites.Models.CompetitionInvite
 
 @{
     Layout = null;
@@ -34,18 +34,21 @@
                     Your phone: @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
                 </div>
 
+
                 <div class="form-group">
-                    <label>Will you attend?</label>
-                    @Html.DropDownListFor(x => x.WillAttend, new[] {
-                           new SelectListItem() {Text = "Yes, I'll be there",
-                           Value = bool.TrueString},
-                           new SelectListItem() {Text = "No, I can't come",
-                           Value = bool.FalseString}
-                       }, "Choose an option", new { @class = "form-control" })
+                    <label>Your Interest:</label>
+                    @Html.DropDownListFor(x => x.Interest, new List<SelectListItem> {
+               
+                           new SelectListItem { Text = "Internet of Things", Value = PartyInvites.Models.TechnicalInterest.IoT.ToString() },// Internet of Things is the first item, so it will be the default interest // Type casting (String)
+                            new SelectListItem { Text = "Cognitive Computing", Value = PartyInvites.Models.TechnicalInterest.Cognitive.ToString() },
+                            new SelectListItem { Text = "Wearable Computing", Value = PartyInvites.Models.TechnicalInterest.Wearable.ToString() },
+                            new SelectListItem { Text = "Augmented / Virtual Reality", Value = PartyInvites.Models.TechnicalInterest.AR_VR.ToString() }
+                        },  new { @class = "form-control" })
                 </div>
 
                 <div class="text-center">
-                    <input type="submit" value="Submit RSVP" />
+                    <input type="submit" value="Accept Invitation" />
+                    <input type="button" value="Send Regrets" />
                 </div>
             }
 
