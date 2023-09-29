@@ -19,7 +19,7 @@ namespace PartyInvites.Models
         public string Phone { get; set; }
 
         //[Required(ErrorMessage ="Please specify whether you'll attend")]
-        //public bool? WillAttend { get; set; }
+        public bool? WillAttend { get; set; }
 
         //[Required(ErrorMessage ="Please enter your address")]
         public string Address { get; set; }

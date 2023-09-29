@@ -27,7 +27,7 @@
             WebMail.UserName = "mySmtpUsername";
             WebMail.Password = "mySmtpPassword";
             WebMail.From = "rsvps@example.com";
-            //WebMail.Send("party-host@example.com", "RSVP Notification", Model.Name + " is " + ((Model.WillAttend ?? false) ? "" : "not") + " attending");
+            WebMail.Send("party-host@example.com", "RSVP Notification", Model.Name + " is " + ((Model.WillAttend ?? false) ? "" : "not") + " attending");
 
         } catch (Exception)
         {
@@ -37,10 +37,27 @@
 
 
     <div class="text-center"> 
-        <h1>Thank you, @Model.Name!</h1>
+
+        @if (Model.WillAttend == true)
+        {
+            <h1>Thank you, @Model.Name!</h1>
+        } else
+        {
+            <h1>We understand</h1>
+        }
+
+
         <div class="lead">
 
-            <p>You were enrolled in the @Model.Interest.ToString() track of the competition</p>   
+            @if (Model.WillAttend == false)
+            {
+                <p>Sorry to hear that.</p>
+            }
+            else
+            {
+
+                <p>You were enrolled in the @Model.Interest.ToString() track of the competition</p>
+            }
 
 
 

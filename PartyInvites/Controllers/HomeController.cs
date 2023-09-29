@@ -27,7 +27,25 @@ namespace PartyInvites.Controllers
         [HttpPost] 
         public ViewResult RsvpForm(CompetitionInvite competitionInvite)
         {
-           
+
+            if (Request.Form["btn"] == "Accept Invitation")
+            {
+                competitionInvite.WillAttend = true;
+            } else if (Request.Form["btn"] == "Send Regrets")
+            {
+                competitionInvite.WillAttend = false;
+                return View("Thanks", competitionInvite);
+            }
+
+            if (ModelState.IsValid)
+            {
+                return View("Thanks", competitionInvite);
+            } else
+            {
+                return View();
+            }
+
+           /*
             if (ModelState.IsValid)
             {
                 //TODO: Email response to the party organizer
@@ -36,7 +54,7 @@ namespace PartyInvites.Controllers
             {
                 // there is a validation error
                 return View(); // re-render the RscpForm view
-            }
+            } */
 
            
         }
